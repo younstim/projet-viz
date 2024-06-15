@@ -244,6 +244,7 @@ plt.pie(sizes, labels=labels, autopct='%1.1f%%', startangle=140)
 plt.title('Répartition des bornettes libres')
 plt.axis('equal')
 plt.show()
+st.pyplot(fig)
 
 
 # ### Diagrammes de dispersion (Scatter plots)
@@ -258,6 +259,7 @@ plt.title('Relation entre Capacité de la station et Nombre total de vélos disp
 plt.xlabel('Capacité de la station')
 plt.ylabel('Nombre total de vélos disponibles')
 plt.show()
+st.pyplot(fig)
 
 
 # In[78]:
@@ -272,6 +274,7 @@ plt.ylabel('Nombre total vélos disponibles')
 plt.legend(title='Station en fonctionnement')
 plt.grid(True)
 plt.show()
+st.pyplot(fig)
 
 
 # In[80]:
@@ -284,6 +287,7 @@ plt.title('Répartition des stations par fonctionnement')
 plt.xlabel('Station en fonctionnement')
 plt.ylabel('Nombre de stations')
 plt.show()
+st.pyplot(fig)
 
 
 # In[81]:
@@ -304,6 +308,7 @@ plt.tight_layout()
 
 # Affichage du graphique
 plt.show()
+st.pyplot(fig)
 
 
 # In[83]:
@@ -324,4 +329,5 @@ plt.xticks(rotation=45)
 plt.legend(['Vélos mécaniques disponibles', 'Vélos électriques disponibles'])
 plt.tight_layout()
 plt.show()
+st.pyplot(fig)
 
