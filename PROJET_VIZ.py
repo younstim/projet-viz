@@ -65,16 +65,6 @@ df.describe().transpose()
 # In[237]:
 
 
-# Obtenir le nombre de colonnes et ligne 
-# le nombre de colonnes
-num_columns = velib.shape[1]  # shape[1] donne le nombre de colonnes
-
-# le nombre de lignes
-num_lignes = velib.shape[0]  # shape[0] donne le nombre de lignes
-
-# Afficher le nombre de lignes et de colonnes du DataFrame
-print(f"Le DataFrame contient {num_columns} colonnes et {num_lignes} lignes.")
-
 
 # ## Exploration initiale des données
 
