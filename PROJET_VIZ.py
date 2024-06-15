@@ -274,30 +274,31 @@ st.pyplot(fig6)
 villes = st.multiselect('Sélectionnez les villes', options=df['nom_arrondissement_communes'].unique())
 types_velos = st.multiselect('Sélectionnez le type de vélos', options=['mechanical', 'ebike'], default=["mechanical","ebike"])
 
-# Filtrer les données en fonction des sélections
-df_filtered = df[df['nom_arrondissement_communes'].isin(villes)]
+if st.button('Envoyer'):
+    # Filtrer les données en fonction des sélections
+    df_filtered = df[df['nom_arrondissement_communes'].isin(villes)]
 
-# Créer le graphique pour les vélos disponibles par commune
-fig7, ax = plt.subplots(figsize=(15, 10))
+    # Créer le graphique pour les vélos disponibles par commune
+    fig7, ax = plt.subplots(figsize=(15, 10))
 
-# Afficher les barres divisées pour chaque ville
-for ville in villes:
-    data_ville = df_filtered[df_filtered['nom_arrondissement_communes'] == ville]
-    if 'mechanical' in types_velos:
-        ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
-    if 'ebike' in types_velos:
-        ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == villes[0] else "")
+    # Afficher les barres divisées pour chaque ville
+    for ville in villes:
+        data_ville = df_filtered[df_filtered['nom_arrondissement_communes'] == ville]
+        if 'mechanical' in types_velos:
+            ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
+        if 'ebike' in types_velos:
+            ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == villes[0] else "")
 
-# Réglages des axes et des titres
-ax.set_xlabel('Nombre total de vélos disponibles')
-ax.set_ylabel('Nom des communes équipées')
-ax.set_title('Nombre de vélos disponibles par commune')
-ax.legend()
+    # Réglages des axes et des titres
+    ax.set_xlabel('Nombre total de vélos disponibles')
+    ax.set_ylabel('Nom des communes équipées')
+    ax.set_title('Nombre de vélos disponibles par commune')
+    ax.legend()
 
-plt.tight_layout()
+    plt.tight_layout()
 
-# Afficher le graphique dans Streamlit
-st.pyplot(fig7)
+    # Afficher le graphique dans Streamlit
+    st.pyplot(fig7)
 
 
 # In[ ]:
