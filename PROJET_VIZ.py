@@ -271,8 +271,8 @@ st.pyplot(fig6)
 
 
 # Créer des filtres interactifs
-villes = st.multiselect('Sélectionnez les villes', options=df['nom_arrondissement_communes'].unique(), default=df['nom_arrondissement_communes'].unique())
-types_velos = st.radio('Sélectionnez le type de vélos', options=['mechanical', 'ebike'], default=['mechanical', 'ebike'])
+villes = st.multiselect('Sélectionnez les villes', options=df['nom_arrondissement_communes'].unique(), default=df['Romainville', 'La Courneuve'].unique())
+types_velos = st.radio('Sélectionnez le type de vélos', options=['mechanical', 'ebike'])
 
 # Filtrer les données en fonction des sélections
 df_filtered = df[df['nom_arrondissement_communes'].isin(villes)]
