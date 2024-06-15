@@ -59,8 +59,7 @@ df.describe().transpose()
 # In[1]:
 
 
-#Afficher le nb de lignes et colonnes
-velib.shape
+
 
 
 # In[237]:
