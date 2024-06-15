@@ -223,7 +223,7 @@ df.head()
 
 # Histogramme de la Capacité de la station
 plt.figure(figsize=(8, 5))
-sns.histplot(df['Capacité de la station'], bins=10, kde=True)
+sns.histplot(df['capacity'], bins=10, kde=True)
 plt.title('Distribution de la Capacité de la station')
 plt.xlabel('Capacité de la station')
 plt.ylabel('Fréquence')
