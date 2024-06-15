@@ -209,9 +209,6 @@ df.head()
 # In[251]:
 
 
-import matplotlib.pyplot as plt
-import seaborn as sns
-
 # Histogramme de la Capacité de la station
 plt.figure(figsize=(8, 5))
 sns.histplot(df['Capacité de la station'], bins=10, kde=True)
