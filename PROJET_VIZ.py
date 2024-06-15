@@ -269,25 +269,25 @@ st.pyplot(fig6)
 
 # In[128]:
 
+# Création de filtres interactifs pour les villes et les types de vélos
+selected_villes = st.multiselect('Sélectionnez les villes', options=df['nom_arrondissement_communes'].unique(), default=df['nom_arrondissement_communes'].unique())
+selected_types_velos = st.multiselect('Sélectionnez le type de vélos', options=['mechanical', 'ebike'], default=['mechanical', 'ebike'])
 
-# Créer des filtres interactifs
-villes = st.multiselect('Sélectionnez les villes', options=df['nom_arrondissement_communes'].unique())
-types_velos = st.multiselect('Sélectionnez le type de vélos', options=['mechanical', 'ebike'], default=["mechanical","ebike"])
-
+# Ajouter un bouton "Envoyer"
 if st.button('Envoyer'):
     # Filtrer les données en fonction des sélections
-    df_filtered = df[df['nom_arrondissement_communes'].isin(villes)]
+    df_filtered = df[df['nom_arrondissement_communes'].isin(selected_villes)]
 
     # Créer le graphique pour les vélos disponibles par commune
     fig7, ax = plt.subplots(figsize=(15, 10))
 
     # Afficher les barres divisées pour chaque ville
-    for ville in villes:
+    for ville in selected_villes:
         data_ville = df_filtered[df_filtered['nom_arrondissement_communes'] == ville]
-        if 'mechanical' in types_velos:
-            ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
-        if 'ebike' in types_velos:
-            ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == villes[0] else "")
+        if 'mechanical' in selected_types_velos:
+            ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == selected_villes[0] else "")
+        if 'ebike' in selected_types_velos:
+            ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in selected_types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == selected_villes[0] else "")
 
     # Réglages des axes et des titres
     ax.set_xlabel('Nombre total de vélos disponibles')
