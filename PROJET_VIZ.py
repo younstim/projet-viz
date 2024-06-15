@@ -277,7 +277,7 @@ types_velos = st.multiselect('Sélectionnez le type de vélos', options=['mechan
 # Filtrer les données en fonction des sélections
 df_filtered = df[df['nom_arrondissement_communes'].isin(villes)]
 
-# Créer le graphique
+# Créer le graphique pour les vélos disponibles par commune
 fig7, ax = plt.subplots(figsize=(15, 10))
 
 # Afficher les barres divisées pour chaque ville
@@ -295,7 +295,6 @@ ax.set_title('Nombre de vélos disponibles par commune')
 ax.legend()
 
 plt.tight_layout()
-plt.show()
 
 # Afficher le graphique dans Streamlit
 st.pyplot(fig7)
