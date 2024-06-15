@@ -228,6 +228,7 @@ plt.title('Distribution de la Capacité de la station')
 plt.xlabel('Capacité de la station')
 plt.ylabel('Fréquence')
 plt.show()
+st.pyplot(fig)
 
 
 # ### Diagrammes circulaires (Pie charts)
