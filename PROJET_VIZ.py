@@ -229,7 +229,7 @@ plt.show()
 
 # Supprimer les informations après la date
 df['duedate'] = df['duedate'].str.extract(r'(\d{4}-\d{2}-\d{2})')[0]
-df['duedate'] = pd.to_datetime(df['duedate'], format=ISO8601)
+df['duedate'] = pd.to_datetime(df['duedate'], format='%Y-%m-%d')
 
 # Filtrer les stations qui ne sont pas en service
 df_not_installed = df[df['is_installed'] == "NON"].copy()
