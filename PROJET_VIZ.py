@@ -14,7 +14,7 @@ from io import StringIO
 import requests
 import streamlit as st
 
-
+st.set_page_config(page_title="Analyse des Vélos", layout="wide")
 # ## Charger les données
 
 # In[152]:
