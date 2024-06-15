@@ -222,16 +222,12 @@ df.head()
 
 
 # Histogramme de la Capacité de la station
-# Assurez-vous que les données sont dans un DataFrame appelé 'df'
 fig, ax = plt.subplots(figsize=(8, 5))
 sns.histplot(df['capacity'], bins=10, kde=True, ax=ax)
 ax.set_title('Distribution de la Capacité de la station')
 ax.set_xlabel('Capacité de la station')
 ax.set_ylabel('Fréquence')
 plt.show()
-
-# Si vous utilisez Streamlit
-import streamlit as st
 st.pyplot(fig)
 
 
