@@ -14,7 +14,7 @@ from io import StringIO
 import requests
 import streamlit as st
 
-st.set_page_config(page_title="Analyse des Vélos", layout="wide")
+st.set_page_config(page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed)
 # ## Charger les données
 
 # In[152]:
@@ -124,10 +124,6 @@ df
 
 # In[165]:
 
-
-st.set_page_config(
-    page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed"
-)
 st.markdown("# Tim-Younes Jelinek, Mohamed-Amine AMMAR")
 
 
