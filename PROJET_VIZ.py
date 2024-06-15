@@ -252,7 +252,7 @@ updates_per_month = df_not_installed['year_month'].value_counts().sort_index()
 updates_per_month.index = updates_per_month.index.to_timestamp()
 
 # Création du graphique temporel
-fig, ax = plt.subplots(figsize=(15, 6))
+fig6, ax = plt.subplots(figsize=(15, 6))
 ax.plot(updates_per_month.index, updates_per_month.values, marker='o', linestyle='-')
 ax.set_xlabel('Date')
 ax.set_ylabel('Nombre de stations plus en fonctionnement')
