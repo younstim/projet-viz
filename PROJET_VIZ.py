@@ -134,8 +134,6 @@ df.isnull()
 
 
 # Imputation par la valeur normalement attendue
-# Par exemple, remplacer les valeurs manquantes dans 'Identifiant station' par une valeur spécifique
-df['Identifiant station'].fillna(99999, inplace=True)
 
 # Pour 'Nom station', remplacer par une valeur constante ou une chaîne vide
 df['Nom station'].fillna('Non spécifié', inplace=True)
