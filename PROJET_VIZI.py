@@ -32,12 +32,7 @@ st.markdown("# Tim-Younes Jelinek, Mohamed-Amine AMMAR")
 # CSS
 page_bg_img = '''
 <style>
-.stTitle, .stGraph {
-    border: 2px solid #4CAF50;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 20px 0;
-}
+
 .stButton > button {
     background-color: #FF4B4B;
     color: white;
@@ -313,6 +308,21 @@ if 'villes' not in st.session_state:
 if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
 
+st.markdown("""
+<style>
+.stTitle, .stGraph {
+    border: 2px solid #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+.stTitle {
+    font-size: 24px;
+    font-weight: bold;
+    color: #4CAF50;
+}
+</style>
+""", unsafe_allow_html=True)
 
 # Ajouter un titre au-dessus du formulaire
 st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 5</div>', unsafe_allow_html=True)
