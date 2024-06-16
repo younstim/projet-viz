@@ -257,8 +257,8 @@ st.markdown('<div class="stTitle">Comparaison des capacités des stations et des
 communes = comparison_data.index.tolist()
 comparison_data_filtered = comparison_data.loc[communes]
 
-# Création du graphique en barres groupées
-fig, ax = plt.subplots(figsize=(15, 10))
+# Création du graphique en barres horizontales groupées
+fig9, ax = plt.subplots(figsize=(15, 10))
 
 # Définir la largeur des barres
 bar_width = 0.35
@@ -267,21 +267,21 @@ bar_width = 0.35
 index = np.arange(len(comparison_data_filtered))
 
 # Barres pour la capacité totale
-bar1 = ax.bar(index, comparison_data_filtered['Capacité totale'], bar_width, label='Capacité totale', color='skyblue')
+bar1 = ax.barh(index, comparison_data_filtered['Capacité totale'], bar_width, label='Capacité totale', color='skyblue')
 
 # Barres pour les vélos disponibles
-bar2 = ax.bar(index + bar_width, comparison_data_filtered['Vélos disponibles'], bar_width, label='Vélos disponibles', color='lightgreen')
+bar2 = ax.barh(index + bar_width, comparison_data_filtered['Vélos disponibles'], bar_width, label='Vélos disponibles', color='lightgreen')
 
 # Ajouter des étiquettes et un titre
-ax.set_xlabel('Commune')
-ax.set_ylabel('Nombre')
+ax.set_ylabel('Commune')
+ax.set_xlabel('Nombre')
 ax.set_title('Comparaison des capacités des stations et des vélos disponibles par commune')
-ax.set_xticks(index + bar_width / 2)
-ax.set_xticklabels(comparison_data_filtered.index, rotation=45, ha='right')
+ax.set_yticks(index + bar_width / 2)
+ax.set_yticklabels(comparison_data_filtered.index, rotation=0)
 ax.legend()
 
 # Afficher le graphique dans Streamlit
-st.pyplot(fig)
+st.pyplot(figç)
 
 # Sélection des colonnes pour la visualisation
 stations = df['nom_arrondissement_communes']  # Assumant que 'Nom communes équipées' contient les noms des stations
