@@ -32,6 +32,12 @@ st.markdown("# Tim-Younes Jelinek, Mohamed-Amine AMMAR")
 # CSS
 page_bg_img = '''
 <style>
+.stTitle, .stGraph {
+    border: 2px solid #4CAF50;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
 .stButton > button {
     background-color: #FF4B4B;
     color: white;
