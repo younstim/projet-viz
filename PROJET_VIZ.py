@@ -305,14 +305,10 @@ if 'villes' not in st.session_state:
 if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
 
-# Debugging avant soumission
-st.write("Avant soumission:")
-st.write("Villes (avant):", st.session_state.villes)
-st.write("Types de vélos (avant):", st.session_state.types_velos)
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
-    st.write("Sélectionnez les villes")
+    st.write("Sélectionnez les villes et le type de vélo")
     villes = st.multiselect(
         "Sélectionnez les villes",
         options=list(df['nom_arrondissement_communes'].unique()),
@@ -333,11 +329,6 @@ if submit_button:
         st.session_state.villes = villes
     if types_velos:
         st.session_state.types_velos = types_velos
-
-    # Debugging après soumission
-    st.write("Après soumission:")
-    st.write("Villes (après):", st.session_state.villes)
-    st.write("Types de vélos (après):", st.session_state.types_velos)
 
 # Créer le graphique pour les vélos disponibles par commune
 if st.session_state.villes and st.session_state.types_velos:
