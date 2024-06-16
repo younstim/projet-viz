@@ -277,7 +277,7 @@ st.pyplot(fig6)
 
 # In[128]:
 
-# CSS pour styliser les éléments
+#CSS
 page_bg_img = '''
 <style>
 .stButton > button {
@@ -292,16 +292,10 @@ page_bg_img = '''
     border-radius: 10px;
     margin-bottom: 20px;
 }
-.stGraph {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-}
 .stTitle {
     font-size: 24px;
     font-weight: bold;
-    color: #FF4B4B;
+    color: black;
     margin-bottom: 10px;
 }
 </style>
@@ -315,14 +309,6 @@ if 'villes' not in st.session_state:
     st.session_state.villes = []
 if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
-
-# Debugging avant soumission
-st.write("Avant soumission:")
-st.write("Villes (avant):", st.session_state.villes)
-st.write("Types de vélos (avant):", st.session_state.types_velos)
-
-# Ajouter un titre au-dessus du formulaire
-st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique</div>', unsafe_allow_html=True)
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
@@ -346,11 +332,6 @@ if submit_button:
     st.session_state.villes = villes
     st.session_state.types_velos = types_velos
 
-    # Debugging après soumission
-    st.write("Après soumission:")
-    st.write("Villes (après):", st.session_state.villes)
-    st.write("Types de vélos (après):", st.session_state.types_velos)
-
 # Créer le graphique pour les vélos disponibles par commune
 if st.session_state.villes and st.session_state.types_velos:
     fig7, ax = plt.subplots(figsize=(15, 10))
@@ -371,10 +352,8 @@ if st.session_state.villes and st.session_state.types_velos:
 
     plt.tight_layout()
 
-    # Encadrer le graphique avec le même style que le formulaire
-    st.markdown('<div class="stGraph">', unsafe_allow_html=True)
+    # Afficher le graphique dans Streamlit
     st.pyplot(fig7)
-    st.markdown('</div>', unsafe_allow_html=True)
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
 # In[ ]:
