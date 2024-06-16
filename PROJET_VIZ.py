@@ -299,11 +299,10 @@ page_bg_img = '''
 # Appliquer le CSS
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
-# Initialiser session_state pour les villes et types de vélos si elles n'existent pas
 if 'villes' not in st.session_state:
-    st.session_state.villes = []
+    st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
-    st.session_state.types_velos = []
+    st.session_state.types_velos = ['mechanical', 'ebike']
 
 # Debugging avant soumission
 st.write("Avant soumission:")
