@@ -158,7 +158,8 @@ st.write(f"""Nous avons choisi ce jeu de données en raison de l'approche des Je
 Avec **+ 10** vélos utilisés par seconde en heure de pointe, **100 000** utilisateurs par jour et utilisé dans une **soixantaine** de communes en Île-de-France, il était intéressant pour nous de voir si le réseau de vélibs pourrait soulager les transports franciliens
 Notre étude portera sur [un jeu de données de la Mairie de Paris](https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/?disjunctive.name&disjunctive.is_installed&disjunctive.is_renting&disjunctive.is_returning&disjunctive.nom_arrondissement_communes), qui traite de l'infrastructure du système Vélib.
 Le jeu de données contient {df.shape[0]} observations""")
-
+st.markdown("### Les types de variables")
+st.write(f"""df.dtype""")
 
 
 
