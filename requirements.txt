@@ -1,7 +1,4 @@
 streamlit
 matplot
 seaborn
-unicode
-requests
-re
-SnwoballStemmer
+
