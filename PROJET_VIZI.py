@@ -301,13 +301,6 @@ st.pyplot(fig6)
 
 # In[14]:
 
-
-# Initialiser session_state pour les villes et types de vélos si elles n'existent pas
-if 'villes' not in st.session_state:
-    st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
-if 'types_velos' not in st.session_state:
-    st.session_state.types_velos = ['mechanical', 'ebike']
-
 # Ajouter du style CSS pour la bordure englobante
 st.markdown("""
 <style>
@@ -380,8 +373,6 @@ if 'villes' in st.session_state and 'types_velos' in st.session_state:
 
         # Afficher le graphique dans Streamlit
         st.pyplot(fig7)
-    else:
-        st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
