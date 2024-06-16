@@ -234,61 +234,50 @@ st.pyplot(fig4)
 
 # ## MES GRAPHS
 
+# Calculer la capacité totale des stations par commune
 capacity_per_commune = df.groupby('nom_arrondissement_communes')['capacity'].sum()
 
 # Calculer le nombre total de vélos disponibles par commune
 bikes_available_per_commune = df.groupby('nom_arrondissement_communes')['numbikesavailable'].sum()
 
 # Fusionner les deux séries en un DataFrame
-radar_data = pd.DataFrame({
-    'capacity': capacity_per_commune,
-    'bikes_available': bikes_available_per_commune
+comparison_data = pd.DataFrame({
+    'Capacité totale': capacity_per_commune,
+    'Vélos disponibles': bikes_available_per_commune
 })
 
-# Ajouter un titre au-dessus du formulaire
+# Ajouter un titre au-dessus du graphique
 st.markdown('<div class="stTitle">Comparaison des capacités des stations et des vélos disponibles par commune</div>', unsafe_allow_html=True)
 
-# Formulaire pour sélectionner les communes
-with st.form(key='form1'):
-    st.write("Sélectionnez les communes pour le graphique radar")
-    communes = st.multiselect(
-        "Sélectionnez les communes",
-        options=radar_data.index.tolist(),
-        default=radar_data.index.tolist()
-    )
-    submit_button = st.form_submit_button(label='Envoyer')
+# Filtrer les données pour les communes sélectionnées (ou toutes les communes)
+communes = comparison_data.index.tolist()
+comparison_data_filtered = comparison_data.loc[communes]
 
-if submit_button:
-    # Filtrer les données pour les communes sélectionnées
-    radar_data_filtered = radar_data.loc[communes]
+# Création du graphique en barres groupées
+fig9, ax = plt.subplots(figsize=(15, 10))
 
-    # Nombre de variables
-    labels = radar_data_filtered.columns
-    num_vars = len(labels)
+# Définir la largeur des barres
+bar_width = 0.35
 
-    # Angles pour les axes
-    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
-    angles += angles[:1]
+# Positions des barres
+index = np.arange(len(comparison_data_filtered))
 
-    # Préparer le graphique
-    fig9, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+# Barres pour la capacité totale
+bar1 = ax.bar(index, comparison_data_filtered['Capacité totale'], bar_width, label='Capacité totale', color='skyblue')
 
-    for commune in radar_data_filtered.index:
-        values = radar_data_filtered.loc[commune].tolist()
-        values += values[:1]
-        ax.plot(angles, values, label=commune)
-        ax.fill(angles, values, alpha=0.25)
+# Barres pour les vélos disponibles
+bar2 = ax.bar(index + bar_width, comparison_data_filtered['Vélos disponibles'], bar_width, label='Vélos disponibles', color='lightgreen')
 
-    # Ajouter les étiquettes
-    ax.set_yticklabels([])
-    ax.set_xticks(angles[:-1])
-    ax.set_xticklabels(labels)
+# Ajouter des étiquettes et un titre
+ax.set_xlabel('Commune')
+ax.set_ylabel('Nombre')
+ax.set_title('Comparaison des capacités des stations et des vélos disponibles par commune')
+ax.set_xticks(index + bar_width / 2)
+ax.set_xticklabels(comparison_data_filtered.index, rotation=45, ha='right')
+ax.legend()
 
-    # Ajouter la légende
-    ax.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
-
-    # Afficher le graphique dans Streamlit
-    st.pyplot(fig9)
+# Afficher le graphique dans Streamlit
+st.pyplot(fig9)
 
 # Sélection des colonnes pour la visualisation
 stations = df['nom_arrondissement_communes']  # Assumant que 'Nom communes équipées' contient les noms des stations
