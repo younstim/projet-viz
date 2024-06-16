@@ -159,8 +159,16 @@ Avec **+ 10** vélos utilisés par seconde en heure de pointe, **100 000** utili
 Notre étude portera sur [un jeu de données de la Mairie de Paris](https://opendata.paris.fr/explore/dataset/velib-disponibilite-en-temps-reel/information/?disjunctive.name&disjunctive.is_installed&disjunctive.is_renting&disjunctive.is_returning&disjunctive.nom_arrondissement_communes), qui traite de l'infrastructure du système Vélib.
 Le jeu de données contient {df.shape[0]} observations""")
 st.markdown("### Les types de variables")
-variable_types = data.dtypes
-st.write(variable_types)
+st.write("""Nous allons d'abord expliquer les variables non-intuitives :""")
+st.write("""**stationcode** correspond au code attribué à la station""")
+st.write("""**name** correspond au nom de la station""")
+st.write("""**is_installed** indique si la station est fonctionnelle ou non""")
+st.write("""**capacity** indique le nombre de vélos que cette station peut acceuillir""")
+st.write("""**numdocksavailable** indique le nombre de bornes libres""")
+st.write("""**numbikeavalaiable** correspond au nombre de vélos disponibles""")
+st.write("""**mechanical et ebike**, respectivement le nombre de vélos mécaniques et électriques""")
+st.write("""**is_renting** indique si il ya une borne de paiement et **is_returning** indique si il est possible de retourner son vélib à cette station""")
+st.write("""**duedate** correspond à la date de la dernière actualisation des informations de la station""")
 
 
 
