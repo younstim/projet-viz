@@ -281,9 +281,6 @@ ax.set_ylabel('Nombre de stations par commune')
 
 st.pyplot(fig8)
 
-# Appel de la fonction pour créer le graphique de dispersion
-create_scatter_plot(df, filter_option)
-
 
 df['duedate'] = df['duedate'].str.extract(r'(\d{4}-\d{2}-\d{2})')[0]
 df['duedate'] = pd.to_datetime(df['duedate'], format='%Y-%m-%d')
