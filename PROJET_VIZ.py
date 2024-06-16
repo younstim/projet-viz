@@ -311,7 +311,7 @@ if 'types_velos' not in st.session_state:
 
 
 # Ajouter un titre au-dessus du formulaire
-st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 5</div>', unsafe_allow_html=True)
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
