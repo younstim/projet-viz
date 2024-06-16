@@ -15,6 +15,16 @@ import requests
 import streamlit as st
 
 st.set_page_config(page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed")
+page_bg_img = '''
+<style>
+body {
+    background-color: #A0C4FF;
+}
+</style>
+'''
+
+# Appliquer le CSS
+st.markdown(page_bg_img, unsafe_allow_html=True)
 # ## Charger les données
 
 # In[152]:
