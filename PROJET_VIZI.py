@@ -331,11 +331,14 @@ plt.show()
 
 # Affichage du graphique
 st.pyplot(fig6)
+
+
 # Initialiser session_state pour les villes et types de vélos si elles n'existent pas
 if 'villes' not in st.session_state:
     st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
+
 
 # Ajouter un titre au-dessus du formulaire
 st.markdown('<div class="stTitle">Répartition des vélos mécaniques et électriques par ville</div>', unsafe_allow_html=True)
@@ -346,7 +349,7 @@ with st.form(key='form1'):
     villes = st.multiselect(
         "Sélectionnez les villes",
         options=list(df['nom_arrondissement_communes'].unique()),
-        default=st.session_state.villes
+        default=st.session_state.villes if st.session_state.villes else list(df['nom_arrondissement_communes'].unique())
     )
 
     types_velos = st.multiselect(
@@ -361,6 +364,7 @@ if submit_button:
     # Mettre à jour les sélections dans session_state
     st.session_state.villes = villes
     st.session_state.types_velos = types_velos
+
 
 # Créer le graphique pour les vélos disponibles par commune
 if st.session_state.villes and st.session_state.types_velos:
@@ -390,8 +394,6 @@ if st.session_state.villes and st.session_state.types_velos:
     st.markdown('</div>', unsafe_allow_html=True)
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
-
-
 
 
 
