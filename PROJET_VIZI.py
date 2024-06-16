@@ -269,18 +269,23 @@ df_not_installed['year_month'] = df_not_installed['duedate'].dt.to_period('M')
 
 st.markdown('<div class="stTitle">Evolution nominale du nombre de fermeture de stations</div>', unsafe_allow_html=True)
 
+# Initialiser l'état de session si nécessaire
+if 'selected_communes' not in st.session_state:
+    st.session_state.selected_communes = []
+
 # Filtre pour sélectionner les communes
 communes = df_not_installed['nom_arrondissement_communes'].unique().tolist()
-selected_communes = st.multiselect('Sélectionnez les communes', options=communes, default=communes)
+selected_communes = st.multiselect('Sélectionnez les communes', options=communes, default=st.session_state.selected_communes)
+
+# Bouton "Envoyer"
+if st.button('Envoyer'):
+    st.session_state.selected_communes = selected_communes
 
 # Création du graphique temporel
-fig6, ax = plt.subplots(figsize=(15, 6))
+if st.session_state.selected_communes:
+    fig6, ax = plt.subplots(figsize=(15, 6))
 
-# Si aucune commune n'est sélectionnée, afficher un message
-if not selected_communes:
-    st.write("Veuillez sélectionner au moins une commune pour afficher le graphique.")
-else:
-    for commune in selected_communes:
+    for commune in st.session_state.selected_communes:
         # Filtrer les données pour chaque commune sélectionnée
         df_commune = df_not_installed[df_not_installed['nom_arrondissement_communes'] == commune]
 
@@ -307,6 +312,8 @@ else:
 
     # Affichage du graphique
     st.pyplot(fig6)
+else:
+    st.write("Veuillez sélectionner au moins une commune pour afficher le graphique.")
 
 
 # Initialiser session_state pour les villes et types de vélos si elles n'existent pas
