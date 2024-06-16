@@ -266,7 +266,7 @@ df_not_installed = df[df['is_installed'] == "NON"].copy()
 # Extraire les mois et années des dates des dernières actualisations
 df_not_installed['year_month'] = df_not_installed['duedate'].dt.to_period('M')
 
-st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 4</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Evolution nominale du nombre de stations fermées</div>', unsafe_allow_html=True)
 
 # Filtre pour sélectionner la commune ou toutes les communes
 communes = ['Toutes les communes'] + df_not_installed['nom_arrondissement_communes'].unique().tolist()
