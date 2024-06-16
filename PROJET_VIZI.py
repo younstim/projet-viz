@@ -376,13 +376,12 @@ if st.session_state.villes and st.session_state.types_velos:
     ax.legend()
 
     plt.tight_layout()
-
-    # Encadrer le graphique avec le même style que le formulaire
-    st.markdown('<div class="stGraph">', unsafe_allow_html=True)
     st.pyplot(fig7)
-    st.markdown('</div>', unsafe_allow_html=True)
+   
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
+
+st.markdown('</div>', unsafe_allow_html=True)
 
 
 
