@@ -301,7 +301,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Initialiser session_state pour les villes et types de vélos si elles n'existent pas
 if 'villes' not in st.session_state:
-    st.session_state.villes = ['Paris', 'Romainville']
+    st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
 
@@ -329,8 +329,10 @@ with st.form(key='form1'):
 
 if submit_button:
     # Mettre à jour les sélections dans session_state
-    st.session_state.villes = villes
-    st.session_state.types_velos = types_velos
+    if villes:
+        st.session_state.villes = villes
+    if types_velos:
+        st.session_state.types_velos = types_velos
 
     # Debugging après soumission
     st.write("Après soumission:")
