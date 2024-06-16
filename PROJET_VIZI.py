@@ -308,6 +308,7 @@ if 'villes' not in st.session_state:
 if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
 
+# Ajouter du style CSS pour la bordure englobante
 st.markdown("""
 <style>
 .container {
@@ -330,7 +331,7 @@ st.markdown("""
 st.markdown('<div class="container">', unsafe_allow_html=True)
 
 # Ajouter un titre au-dessus du formulaire
-st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 5</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique</div>', unsafe_allow_html=True)
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
@@ -338,13 +339,13 @@ with st.form(key='form1'):
     villes = st.multiselect(
         "Sélectionnez les villes",
         options=list(df['nom_arrondissement_communes'].unique()),
-        default=st.session_state.villes if st.session_state.villes else list(df['nom_arrondissement_communes'].unique())
+        default=st.session_state.villes if 'villes' in st.session_state else list(df['nom_arrondissement_communes'].unique())
     )
 
     types_velos = st.multiselect(
         "Sélectionnez le type de vélos",
         options=['mechanical', 'ebike'],
-        default=st.session_state.types_velos
+        default=st.session_state.types_velos if 'types_velos' in st.session_state else ['mechanical', 'ebike']
     )
 
     submit_button = st.form_submit_button(label='Envoyer')
@@ -354,34 +355,36 @@ if submit_button:
     st.session_state.villes = villes
     st.session_state.types_velos = types_velos
 
-
 # Créer le graphique pour les vélos disponibles par commune
-if st.session_state.villes and st.session_state.types_velos:
-    fig7, ax = plt.subplots(figsize=(15, 10))
+if 'villes' in st.session_state and 'types_velos' in st.session_state:
+    if st.session_state.villes and st.session_state.types_velos:
+        fig7, ax = plt.subplots(figsize=(15, 10))
 
-    # Afficher les barres divisées pour chaque ville
-    for ville in st.session_state.villes:
-        data_ville = df[df['nom_arrondissement_communes'] == ville]
-        bottom = 0
-        if 'mechanical' in st.session_state.types_velos:
-            ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == st.session_state.villes[0] else "")
-            bottom += data_ville['mechanical'].sum()
-        if 'ebike' in st.session_state.types_velos:
-            ax.barh(ville, data_ville['ebike'].sum(), left=bottom, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
+        # Afficher les barres divisées pour chaque ville
+        for ville in st.session_state.villes:
+            data_ville = df[df['nom_arrondissement_communes'] == ville]
+            bottom = 0
+            if 'mechanical' in st.session_state.types_velos:
+                ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == st.session_state.villes[0] else "")
+                bottom += data_ville['mechanical'].sum()
+            if 'ebike' in st.session_state.types_velos:
+                ax.barh(ville, data_ville['ebike'].sum(), left=bottom, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
 
-    # Réglages des axes et des titres
-    ax.set_xlabel('Nombre total de vélos disponibles')
-    ax.set_ylabel('Nom des communes équipées')
-    ax.set_title('Nombre de vélos disponibles par commune')
-    ax.legend()
+        # Réglages des axes et des titres
+        ax.set_xlabel('Nombre total de vélos disponibles')
+        ax.set_ylabel('Nom des communes équipées')
+        ax.set_title('Nombre de vélos disponibles par commune')
+        ax.legend()
 
-    plt.tight_layout()
-    st.pyplot(fig7)
-   
-else:
-    st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
+        plt.tight_layout()
+
+        # Afficher le graphique dans Streamlit
+        st.pyplot(fig7)
+    else:
+        st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
 
 
