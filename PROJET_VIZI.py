@@ -155,7 +155,7 @@ df.head()
 #################################################
 st.markdown("## Description du jeu de données")
 st.write("""Nous avons choisi ce jeu de données en raison de l'approche des Jeux Olympiques. Avec des métros saturés et de nouvelles lignes non encore livrées, nous avons décidé de nous concentrer sur un moyen de transport alternatif emblématique à Paris : le Vélib.
-Avec **+ 10** vélos utilisés par seconde en heure de pointe, **100 000** utilisateurs par jour et utilisé dans une **soixantaine** de communes en Île-de-France. Il était intéressant pour nous de voir si le réseau de vélibs pourrait soulager les transports franciliens
+Avec **+ 10** vélos utilisés par seconde en heure de pointe, **100 000** utilisateurs par jour et utilisé dans une **soixantaine** de communes en Île-de-France, il était intéressant pour nous de voir si le réseau de vélibs pourrait soulager les transports franciliens
 Notre étude portera sur un jeu de données de la Mairie de Paris, qui traite de l'infrastructure du système Vélib.""")
 
 
