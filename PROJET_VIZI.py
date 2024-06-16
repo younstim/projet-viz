@@ -152,6 +152,12 @@ df['Proportion de vélos électriques'] = df['Proportion de vélos électriques'
 df.head()
 
 
+#################################################
+st.write("Bonjour, bienvenue sur ma page Streamlit!")
+
+
+
+
 
 # ## MES GRAPHS
 
