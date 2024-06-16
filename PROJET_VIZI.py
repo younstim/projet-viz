@@ -30,6 +30,7 @@ st.markdown("# Tim-Younes Jelinek, Mohamed-Amine AMMAR")
 
 
 # CSS
+page_bg_img = '''
 <style>
 .stButton > button {
     background-color: #FF4B4B;
@@ -50,7 +51,7 @@ st.markdown("# Tim-Younes Jelinek, Mohamed-Amine AMMAR")
     margin-bottom: 10px;
 }
 </style>
-
+'''
 # Appliquer le CSS
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
