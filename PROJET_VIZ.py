@@ -15,16 +15,57 @@ import requests
 import streamlit as st
 
 st.set_page_config(page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed")
-st.markdown(
-    """
-    <style>
-    .stApp {
-        background-color: #A0C4FF;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+page_bg_img = '''
+<style>
+.stApp {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+}
+.stButton > button {
+    background-color: #FF4B4B;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.stForm {
+    background-color: #363636;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+</style>
+'''
+
+# Appliquer le CSS
+st.markdown(page_bg_img, unsafe_allow_html=True)
+
+# Formulaire pour sélectionner les villes
+with st.form(key='form1'):
+    st.write("Sélectionnez les villes")
+    cities = st.multiselect(
+        "Sélectionnez les villes",
+        ['Paris', 'Romainville', 'Vitry-sur-Seine', 'Saint-Denis', 'Aubervilliers', 'Ivry-sur-Seine',
+         'Boulogne-Billancourt', 'Nogent-sur-Marne', 'Rueil-Malmaison', 'Bobigny', 'Montreuil', 'Bagnolet',
+         'Issy-les-Moulineaux', 'Vincennes', 'Montrouge', 'Bagnolet', 'Nanterre', 'Villejuif', 'Rosny-sous-Bois',
+         'Asnières-sur-Seine', 'Malakoff', 'Pantin', 'Champigny-sur-Marne', 'Choisy-le-Roi', 'Joinville-le-Pont',
+         'Le Pré-Saint-Gervais', 'Le Kremlin-Bicêtre', 'Argenteuil', 'Fontenay-sous-Bois', 'Les Lilas',
+         'Neuilly-sur-Seine', 'Saint-Mandé', 'Levallois-Perret', 'Vanves', 'Courbevoie', 'Arcueil', 'Gentilly',
+         'Cachan', 'Clichy', 'Alfortville', 'Puteaux', 'La Garenne-Colombes', 'Charenton-le-Pont', 'Meudon',
+         'Chaville', 'Garches', 'Colombes', 'Suresnes', 'Saint-Maurice', 'Maisons-Alfort', 'Saint-Ouen-sur-Seine',
+         'Saint-Cloud', 'Villeneuve-la-Garenne', 'Bourg-la-Reine', 'Sceaux', 'Sèvres', 'Fontenay-aux-Roses', 'Clamart',
+         'Gennevilliers', 'Châtillon', 'Ville-d’Avray', 'Bois-Colombes', 'Noisy-le-Sec', 'La Courneuve']
+    )
+
+    bike_type = st.multiselect(
+        "Sélectionnez le type de vélos",
+        ['mechanical', 'ebike']
+    )
+
+    submit_button = st.form_submit_button(label='Envoyer')
+
+if submit_button:
+    st.write("Villes sélectionnées :", cities)
+    st.write("Type de vélos sélectionnés :", bike_type)
 # ## Charger les données
 
 # In[152]:
