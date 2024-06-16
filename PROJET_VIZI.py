@@ -258,37 +258,28 @@ plt.show()
 
 st.markdown('<div class="stTitle">Relation entre le nombre de stations fonctionnelles par commune et la moyenne de vélos par station</div>', unsafe_allow_html=True)
 
-# Ajouter une selectbox pour filtrer les communes
-filter_option = st.selectbox("Choisissez les communes à afficher :", ["Toutes les communes", "Toutes les communes sans Paris"])
+# Calculer le nombre de stations par commune
+station_count = df['nom_arrondissement_communes'].value_counts().reset_index()
+station_count.columns = ['nom_arrondissement_communes', 'station_count']
 
-# Fonction pour créer le graphique de dispersion
-def create_scatter_plot(df, filter_option):
-    # Filtrer les données en fonction du choix
-    if filter_option == "Toutes les communes sans Paris":
-        df = df[df['nom_arrondissement_communes'] != 'Paris']
+# Calculer la moyenne de vélos par station pour chaque commune
+avg_bikes_per_station = df.groupby('nom_arrondissement_communes')['numbikesavailable'].mean().reset_index()
+avg_bikes_per_station.columns = ['nom_arrondissement_communes', 'avg_bikes_per_station']
 
-    # Calculer le nombre de stations par commune
-    station_count = df['nom_arrondissement_communes'].value_counts().reset_index()
-    station_count.columns = ['nom_arrondissement_communes', 'station_count']
+# Fusionner les deux DataFrames
+merged_df = pd.merge(station_count, avg_bikes_per_station, on='nom_arrondissement_communes')
 
-    # Calculer la moyenne de vélos par station pour chaque commune
-    avg_bikes_per_station = df.groupby('nom_arrondissement_communes')['numbikesavailable'].mean().reset_index()
-    avg_bikes_per_station.columns = ['nom_arrondissement_communes', 'avg_bikes_per_station']
+# Diagramme de dispersion entre la moyenne de vélos par station et le nombre de stations par commune
+fig8, ax = plt.subplots(figsize=(12, 8))
+scatter_plot = sns.scatterplot(data=merged_df, x='avg_bikes_per_station', y='station_count', hue='nom_arrondissement_communes', sizes=(20, 100), legend='auto', ax=ax)
 
-    # Fusionner les deux DataFrames
-    merged_df = pd.merge(station_count, avg_bikes_per_station, on='nom_arrondissement_communes')
+# Positionnement de la légende en dehors de la figure
+ax.legend(bbox_to_anchor=(0.5, -0.2), loc='upper center', ncol=8)
+ax.set_title('Relation entre la moyenne de vélos par station et le nombre de stations par commune')
+ax.set_xlabel('Moyenne de vélos par station')
+ax.set_ylabel('Nombre de stations par commune')
 
-    # Diagramme de dispersion entre la moyenne de vélos par station et le nombre de stations par commune
-    fig8, ax = plt.subplots(figsize=(12, 8))
-    scatter_plot = sns.scatterplot(data=merged_df, x='avg_bikes_per_station', y='station_count', hue='nom_arrondissement_communes', sizes=(20, 100), legend='auto', ax=ax)
-
-    # Positionnement de la légende en dehors de la figure
-    ax.legend(bbox_to_anchor=(0.5, -0.2), loc='upper center', ncol=8)
-    ax.set_title('Relation entre la moyenne de vélos par station et le nombre de stations par commune')
-    ax.set_xlabel('Moyenne de vélos par station')
-    ax.set_ylabel('Nombre de stations par commune')
-
-    st.pyplot(fig8)
+st.pyplot(fig8)
 
 # Appel de la fonction pour créer le graphique de dispersion
 create_scatter_plot(df, filter_option)
