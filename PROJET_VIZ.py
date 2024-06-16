@@ -310,7 +310,7 @@ with st.form(key='form1'):
     st.write("Sélectionnez les villes")
     villes = st.multiselect(
         "Sélectionnez les villes",
-        df['nom_arrondissement_communes'].unique(),
+        df['nom_arrondissement_communes'],
         default=st.session_state.villes
     )
 
