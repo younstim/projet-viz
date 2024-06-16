@@ -85,7 +85,6 @@ df.head()
 
 #Afficher le nb de lignes et colonnes
 df.shape
-print(f"Le DataFrame contient {df.shape[1]} colonnes et {df.shape[0]} lignes.")
 
 
 # In[11]:
@@ -111,7 +110,6 @@ missing_values = df.isnull().sum()
 missing_percentage = (df.isnull().sum() / len(df)) * 100
 
 print("Valeurs manquantes par colonne : "),  print(missing_values)
-print("\n\n")
 print("Valeurs manquantes en pourcentages :"), print(missing_percentage)
 
 
@@ -125,14 +123,6 @@ df.drop(columns=['code_insee_commune'], inplace=True)
 df.head()
 
 
-# In[159]:
-
-
-# GroupBy par ville avec comptage des stations en fonctionnement
-count_df = df[df['is_installed'] == 'OUI'].groupby('nom_arrondissement_communes').size().reset_index(name='Nombre de station en fonctionnement')
-
-print("Nombre de stations en fonctionnement par ville:")
-print(count_df)
 
 
 # ## Création des deux nouvelles variables
@@ -158,7 +148,7 @@ df['Proportion de vélos électriques'] = df.apply(calculate_proportion, axis=1)
 # Formater les colonnes en pourcentages avec deux décimales
 df['Taux d\'occupation'] = df['Taux d\'occupation'].map('{:.2f}%'.format)
 df['Proportion de vélos électriques'] = df['Proportion de vélos électriques'].apply(lambda x: f"{x:.2f}%" if isinstance(x, (int, float)) else x)
-df
+df.head()
 
 
 # ## Visualisation des tendances 
