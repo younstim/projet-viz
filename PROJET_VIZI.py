@@ -234,6 +234,10 @@ st.pyplot(fig4)
 
 # ## MES GRAPHS
 
+# Assurez-vous que les valeurs négatives sont remplacées ou filtrées
+df['capacity'] = df['capacity'].clip(lower=0)
+df['numbikesavailable'] = df['numbikesavailable'].clip(lower=0)
+
 # Calculer la capacité totale des stations par commune
 capacity_per_commune = df.groupby('nom_arrondissement_communes')['capacity'].sum()
 
@@ -254,7 +258,7 @@ communes = comparison_data.index.tolist()
 comparison_data_filtered = comparison_data.loc[communes]
 
 # Création du graphique en barres groupées
-fig9, ax = plt.subplots(figsize=(15, 10))
+fig, ax = plt.subplots(figsize=(15, 10))
 
 # Définir la largeur des barres
 bar_width = 0.35
@@ -277,7 +281,7 @@ ax.set_xticklabels(comparison_data_filtered.index, rotation=45, ha='right')
 ax.legend()
 
 # Afficher le graphique dans Streamlit
-st.pyplot(fig9)
+st.pyplot(fig)
 
 # Sélection des colonnes pour la visualisation
 stations = df['nom_arrondissement_communes']  # Assumant que 'Nom communes équipées' contient les noms des stations
