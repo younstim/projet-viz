@@ -327,9 +327,9 @@ if submit_button:
     st.session_state.villes = villes
     st.session_state.types_velos = types_velos
 
-# Afficher les sélections pour vérification
-st.write("Villes sélectionnées :", st.session_state.villes)
-st.write("Types de vélos sélectionnés :", st.session_state.types_velos)
+# Debugging outputs
+st.write("Villes sélectionnées (st.session_state):", st.session_state.villes)
+st.write("Types de vélos sélectionnés (st.session_state):", st.session_state.types_velos)
 
 # Créer le graphique pour les vélos disponibles par commune
 if st.session_state.villes and st.session_state.types_velos:
