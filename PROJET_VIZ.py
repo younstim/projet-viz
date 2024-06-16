@@ -280,10 +280,7 @@ st.pyplot(fig6)
 # CSS pour styliser les cadres
 page_bg_img = '''
 <style>
-.stApp {
-    background-color: #2B2B2B;
-    color: #FFFFFF;
-}
+
 .stButton > button {
     background-color: #FF4B4B;
     color: white;
