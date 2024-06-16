@@ -307,11 +307,11 @@ if 'types_velos' not in st.session_state:
     st.session_state.types_velos = ['mechanical', 'ebike']
 
 # Ajouter un titre au-dessus du formulaire
-st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 5</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Répartition du nombre de vélos mécaniques et électriques par ville</div>', unsafe_allow_html=True)
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
-    st.write("Sélectionnez les villes")
+    st.write("Sélectionnez les paramètres pour le graphique 5")
     villes = st.multiselect(
         "Sélectionnez les villes",
         options=list(df['nom_arrondissement_communes'].unique()),
