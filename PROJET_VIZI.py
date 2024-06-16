@@ -263,7 +263,7 @@ filter_option = st.selectbox("Choisissez les communes à afficher :", ["Toutes l
 
 # Filtrer les données en fonction du choix
 if filter_option == "Toutes les communes sans Paris":
-    spdf = df[df['nom_arrondissement_communes'] != 'Paris']
+    pdf = df[df['nom_arrondissement_communes'] != 'Paris']
 
 # Calculer le nombre de stations par commune
 station_count = df['nom_arrondissement_communes'].value_counts().reset_index()
