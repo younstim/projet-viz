@@ -234,8 +234,61 @@ st.pyplot(fig4)
 
 # ## MES GRAPHS
 
-# In[111]:
+capacity_per_commune = df.groupby('nom_arrondissement_communes')['capacity'].sum()
 
+# Calculer le nombre total de vélos disponibles par commune
+bikes_available_per_commune = df.groupby('nom_arrondissement_communes')['numbikesavailable'].sum()
+
+# Fusionner les deux séries en un DataFrame
+radar_data = pd.DataFrame({
+    'capacity': capacity_per_commune,
+    'bikes_available': bikes_available_per_commune
+})
+
+# Ajouter un titre au-dessus du formulaire
+st.markdown('<div class="stTitle">Comparaison des capacités des stations et des vélos disponibles par commune</div>', unsafe_allow_html=True)
+
+# Formulaire pour sélectionner les communes
+with st.form(key='form1'):
+    st.write("Sélectionnez les communes pour le graphique radar")
+    communes = st.multiselect(
+        "Sélectionnez les communes",
+        options=radar_data.index.tolist(),
+        default=radar_data.index.tolist()
+    )
+    submit_button = st.form_submit_button(label='Envoyer')
+
+if submit_button:
+    # Filtrer les données pour les communes sélectionnées
+    radar_data_filtered = radar_data.loc[communes]
+
+    # Nombre de variables
+    labels = radar_data_filtered.columns
+    num_vars = len(labels)
+
+    # Angles pour les axes
+    angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
+    angles += angles[:1]
+
+    # Préparer le graphique
+    fig9, ax = plt.subplots(figsize=(8, 8), subplot_kw=dict(polar=True))
+
+    for commune in radar_data_filtered.index:
+        values = radar_data_filtered.loc[commune].tolist()
+        values += values[:1]
+        ax.plot(angles, values, label=commune)
+        ax.fill(angles, values, alpha=0.25)
+
+    # Ajouter les étiquettes
+    ax.set_yticklabels([])
+    ax.set_xticks(angles[:-1])
+    ax.set_xticklabels(labels)
+
+    # Ajouter la légende
+    ax.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
+
+    # Afficher le graphique dans Streamlit
+    st.pyplot(fig9)
 
 # Sélection des colonnes pour la visualisation
 stations = df['nom_arrondissement_communes']  # Assumant que 'Nom communes équipées' contient les noms des stations
