@@ -310,13 +310,13 @@ with st.form(key='form1'):
     st.write("Sélectionnez les villes")
     villes = st.multiselect(
         "Sélectionnez les villes",
-        df['nom_arrondissement_communes'].unique(),
+        options=list(df['nom_arrondissement_communes'].unique()),
         default=st.session_state.villes
     )
 
     types_velos = st.multiselect(
         "Sélectionnez le type de vélos",
-        ['mechanical', 'ebike'],
+        options=['mechanical', 'ebike'],
         default=st.session_state.types_velos
     )
 
