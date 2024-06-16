@@ -13,7 +13,6 @@ import seaborn as sns
 from io import StringIO
 import requests
 import streamlit as st
-from unidecode import unidecode
 import re
 from nltk.stem import SnowballStemmer
 
