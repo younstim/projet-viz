@@ -256,6 +256,13 @@ st.pyplot(fig5)
 # Affichage du graphique
 plt.show()
 
+# Ajouter une selectbox pour filtrer les communes
+filter_option = st.selectbox("Choisissez les communes à afficher :", ["Toutes les communes", "Toutes les communes sans Paris"])
+
+# Filtrer les données en fonction du choix
+if filter_option == "Toutes les communes sans Paris":
+    df = df[df['nom_arrondissement_communes'] != 'Paris']
+
 # Calculer le nombre de stations par commune
 station_count = df['nom_arrondissement_communes'].value_counts().reset_index()
 station_count.columns = ['nom_arrondissement_communes', 'station_count']
@@ -272,12 +279,11 @@ fig8, ax = plt.subplots(figsize=(12, 8))
 scatter_plot = sns.scatterplot(data=merged_df, x='avg_bikes_per_station', y='station_count', hue='nom_arrondissement_communes', sizes=(20, 100), legend='auto', ax=ax)
 
 # Positionnement de la légende en dehors de la figure
-plt.legend(bbox_to_anchor=(0.5, -0.2), loc='upper center', ncol=8)
-plt.title('Relation entre la moyenne de vélo par stations et le nombre total de stations par ville')
-plt.xlabel('Moyenne de vélos par stations')
-plt.ylabel('Nombre de stations par commune')
-plt.show()
-plt.show()
+ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', ncol=1)
+ax.set_title('Relation entre la moyenne de vélos par station et le nombre de stations par commune')
+ax.set_xlabel('Moyenne de vélos par station')
+ax.set_ylabel('Nombre de stations par commune')
+
 st.pyplot(fig8)
 
 
