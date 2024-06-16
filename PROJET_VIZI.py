@@ -310,19 +310,24 @@ if 'types_velos' not in st.session_state:
 
 st.markdown("""
 <style>
-.stTitle, .stGraph {
-    border: 2px solid #4CAF50;
-    padding: 10px;
-    border-radius: 5px;
+.container {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px;
     margin: 20px 0;
 }
-.stTitle {
+.container .stTitle {
     font-size: 24px;
     font-weight: bold;
-    color: #4CAF50;
+    color: black;
+    text-align: center;
+    margin-bottom: 20px;
 }
 </style>
 """, unsafe_allow_html=True)
+
+# Ajouter un conteneur englobant pour le titre, le formulaire et le graphique
+st.markdown('<div class="container">', unsafe_allow_html=True)
 
 # Ajouter un titre au-dessus du formulaire
 st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 5</div>', unsafe_allow_html=True)
