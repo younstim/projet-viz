@@ -304,7 +304,7 @@ st.markdown('<div class="stTitle">Répartition du nombre de vélos mécaniques e
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
-    st.write("Sélectionnez les paramètres pour le graphique 5")
+    st.write("Sélectionnez les paramètres pour le graphique")
     villes = st.multiselect(
         "Sélectionnez les villes",
         options=list(df['nom_arrondissement_communes'].unique()),
@@ -328,20 +328,23 @@ if submit_button:
 if st.session_state.villes and st.session_state.types_velos:
     fig7, ax = plt.subplots(figsize=(15, 10))
 
-    # Afficher les barres divisées pour chaque ville
+    # Calculer les pourcentages pour chaque ville
     for ville in st.session_state.villes:
         data_ville = df[df['nom_arrondissement_communes'] == ville]
+        total_capacity = data_ville['capacity'].sum()
         bottom = 0
         if 'mechanical' in st.session_state.types_velos:
-            ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == st.session_state.villes[0] else "")
-            bottom += data_ville['mechanical'].sum()
+            mechanical_percentage = (data_ville['mechanical'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
+            ax.barh(ville, mechanical_percentage, color='skyblue', label='Vélos mécaniques' if ville == st.session_state.villes[0] else "")
+            bottom += mechanical_percentage
         if 'ebike' in st.session_state.types_velos:
-            ax.barh(ville, data_ville['ebike'].sum(), left=bottom, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
+            ebike_percentage = (data_ville['ebike'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
+            ax.barh(ville, ebike_percentage, left=bottom, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
 
     # Réglages des axes et des titres
-    ax.set_xlabel('Nombre total de vélos disponibles')
+    ax.set_xlabel('Pourcentage du nombre total de vélos disponibles')
     ax.set_ylabel('Nom des communes équipées')
-    ax.set_title('Nombre de vélos disponibles par commune')
+    ax.set_title('Pourcentage de vélos disponibles par commune')
     ax.legend()
 
     plt.tight_layout()
