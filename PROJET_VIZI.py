@@ -256,6 +256,15 @@ st.pyplot(fig5)
 # Affichage du graphique
 plt.show()
 
+st.markdown('<div class="stTitle">Diagramme de dispersion entre la moyenne de vélos par station et le nombre de stations par commune</div>', unsafe_allow_html=True)
+
+# Ajouter une selectbox pour filtrer les communes
+filter_option = st.selectbox("Choisissez les communes à afficher :", ["Toutes les communes", "Toutes les communes sans Paris"])
+
+# Filtrer les données en fonction du choix
+if filter_option == "Toutes les communes sans Paris":
+    df = df[df['nom_arrondissement_communes'] != 'Paris']
+
 # Calculer le nombre de stations par commune
 station_count = df['nom_arrondissement_communes'].value_counts().reset_index()
 station_count.columns = ['nom_arrondissement_communes', 'station_count']
@@ -267,7 +276,7 @@ avg_bikes_per_station.columns = ['nom_arrondissement_communes', 'avg_bikes_per_s
 # Fusionner les deux DataFrames
 merged_df = pd.merge(station_count, avg_bikes_per_station, on='nom_arrondissement_communes')
 
-st.markdown('<div class="stTitle">Diagramme de dispersion entre la moyenne de vélos par station et le nombre de stations par commune</div>', unsafe_allow_html=True)
+
 
 # Diagramme de dispersion entre la moyenne de vélos par station et le nombre de stations par commune
 fig8, ax = plt.subplots(figsize=(12, 8))
