@@ -314,7 +314,7 @@ st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphiqu
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
-    st.write("Sélectionnez les villes")
+    st.write("Evolution nominale du nombre de fermeture de stations")
     villes = st.multiselect(
         "Sélectionnez les villes",
         options=list(df['nom_arrondissement_communes'].unique()),
