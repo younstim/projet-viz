@@ -279,10 +279,12 @@ fig8, ax = plt.subplots(figsize=(12, 8))
 scatter_plot = sns.scatterplot(data=merged_df, x='avg_bikes_per_station', y='station_count', hue='nom_arrondissement_communes', sizes=(20, 100), legend='auto', ax=ax)
 
 # Positionnement de la légende en dehors de la figure
-ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', ncol=1)
-ax.set_title('Relation entre la moyenne de vélos par station et le nombre de stations par commune')
-ax.set_xlabel('Moyenne de vélos par station')
-ax.set_ylabel('Nombre de stations par commune')
+plt.legend(bbox_to_anchor=(0.5, -0.2), loc='upper center', ncol=8)
+plt.title('Relation entre la moyenne de vélos disponible par stations et le nombre de stations fonctionnelles par communes')
+plt.xlabel('Nombre de stations par commune')
+plt.ylabel('Nombre total de vélos disponibles')
+plt.show()
+
 
 st.pyplot(fig8)
 
