@@ -16,7 +16,6 @@ import streamlit as st
 import re
 from nltk.stem import SnowballStemmer
 
-
 # ## Configuration Streamlit et CSS
 
 # In[ ]:
