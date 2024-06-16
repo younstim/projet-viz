@@ -351,10 +351,12 @@ if st.session_state.villes and st.session_state.types_velos:
     # Afficher les barres divisées pour chaque ville
     for ville in st.session_state.villes:
         data_ville = df[df['nom_arrondissement_communes'] == ville]
+        bottom = 0
         if 'mechanical' in st.session_state.types_velos:
             ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == st.session_state.villes[0] else "")
+            bottom += data_ville['mechanical'].sum()
         if 'ebike' in st.session_state.types_velos:
-            ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in st.session_state.types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
+            ax.barh(ville, data_ville['ebike'].sum(), left=bottom, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
 
     # Réglages des axes et des titres
     ax.set_xlabel('Nombre total de vélos disponibles')
@@ -370,10 +372,9 @@ if st.session_state.villes and st.session_state.types_velos:
     st.markdown('</div>', unsafe_allow_html=True)
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
-# In[ ]:
 
 
-# In[ ]:
+
 
 
 
