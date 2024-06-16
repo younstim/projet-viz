@@ -170,7 +170,7 @@ st.write("""**mechanical et ebike**, respectivement le nombre de vélos mécaniq
 st.write("""**is_renting** indique si il ya une borne de paiement et **is_returning** indique si il est possible de retourner son vélib à cette station""")
 st.write("""**duedate** correspond à la date de la dernière actualisation des informations de la station""")
 
-
+print(df)
 
 
 # ## MES GRAPHS
