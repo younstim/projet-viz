@@ -281,7 +281,7 @@ ax.set_yticklabels(comparison_data_filtered.index, rotation=0)
 ax.legend()
 
 # Afficher le graphique dans Streamlit
-st.pyplot(figç)
+st.pyplot(fig9)
 
 # Sélection des colonnes pour la visualisation
 stations = df['nom_arrondissement_communes']  # Assumant que 'Nom communes équipées' contient les noms des stations
