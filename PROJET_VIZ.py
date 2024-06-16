@@ -327,14 +327,47 @@ st.pyplot(fig6)
 
 # In[128]:
 
+# CSS pour styliser les cadres
+page_bg_img = '''
+<style>
+.stApp {
+    background-color: #2B2B2B;
+    color: #FFFFFF;
+}
+.stButton > button {
+    background-color: #FF4B4B;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 20px;
+}
+.stForm {
+    background-color: #363636;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+</style>
+'''
 
-villes = st.multiselect('Sélectionnez les villes', options=df['nom_arrondissement_communes'].unique(), default=df['nom_arrondissement_communes'].unique())
-types_velos = st.multiselect('Sélectionnez le type de vélos', options=['mechanical', 'ebike'], default=['mechanical', 'ebike'])
+# Appliquer le CSS
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
-if st.button('Envoyer'):
-    # Filtrer les données en fonction des sélections
-    df_filtered = df[df['nom_arrondissement_communes'].isin(villes)]
+# Formulaire pour sélectionner les villes et les types de vélos
+with st.form(key='form1'):
+    st.write("Sélectionnez les villes")
+    villes = st.multiselect(
+        "Sélectionnez les villes",
+        df_filtered['nom_arrondissement_communes'].unique()
+    )
 
+    types_velos = st.multiselect(
+        "Sélectionnez le type de vélos",
+        ['mechanical', 'ebike']
+    )
+
+    submit_button = st.form_submit_button(label='Envoyer')
+
+if submit_button:
     # Créer le graphique pour les vélos disponibles par commune
     fig7, ax = plt.subplots(figsize=(15, 10))
 
