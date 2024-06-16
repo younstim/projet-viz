@@ -310,7 +310,7 @@ with st.form(key='form1'):
     st.write("Sélectionnez les villes")
     villes = st.multiselect(
         "Sélectionnez les villes",
-        df_filtered['nom_arrondissement_communes'].unique(),
+        df['nom_arrondissement_communes'].unique(),
         default=st.session_state.villes
     )
 
@@ -332,7 +332,7 @@ if submit_button:
 
     # Afficher les barres divisées pour chaque ville
     for ville in villes:
-        data_ville = df_filtered[df_filtered['nom_arrondissement_communes'] == ville]
+        data_ville = df[df['nom_arrondissement_communes'] == ville]
         if 'mechanical' in types_velos:
             ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
         if 'ebike' in types_velos:
