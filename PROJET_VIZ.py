@@ -15,6 +15,16 @@ import requests
 import streamlit as st
 
 st.set_page_config(page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed", page_color="#A0C4FF")
+st.markdown(
+    """
+    <style>
+    .stApp {
+        background-color: #A0C4FF;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
 # ## Charger les données
 
 # In[152]:
