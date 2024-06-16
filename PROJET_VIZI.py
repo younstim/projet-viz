@@ -155,6 +155,27 @@ df.head()
 
 # ## MES GRAPHS
 
+# Calculer les totaux globaux
+total_capacity = df['capacity'].sum()
+total_bikes_available = df['numbikesavailable'].sum()
+total_bikes_in_circulation = total_capacity - total_bikes_available
+
+# Création du pie chart pour le pourcentage de vélos en circulation
+fig10, ax2 = plt.subplots()
+
+labels = ['Vélos en circulation', 'Vélos disponibles']
+sizes = [total_bikes_in_circulation, total_bikes_available]
+colors = ['#ff9999','#66b3ff']
+explode = (0.1, 0)  # Explode the first slice
+
+ax2.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
+ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
+
+ax2.set_title('Répartition des vélos en circulation et disponibles')
+
+# Afficher le pie chart dans Streamlit
+st.pyplot(fig10)
+
 # Assurez-vous que les valeurs négatives sont remplacées ou filtrées
 df['capacity'] = df['capacity'].clip(lower=0)
 df['numbikesavailable'] = df['numbikesavailable'].clip(lower=0)
