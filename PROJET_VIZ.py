@@ -310,7 +310,7 @@ with st.form(key='form1'):
     st.write("Sélectionnez les villes")
     villes = st.multiselect(
         "Sélectionnez les villes",
-        df['nom_arrondissement_communes'],
+        df['nom_arrondissement_communes'].unique(),
         default=st.session_state.villes
     )
 
@@ -326,6 +326,10 @@ if submit_button:
     # Mettre à jour les sélections dans session_state
     st.session_state.villes = villes
     st.session_state.types_velos = types_velos
+
+# Afficher les sélections pour vérification
+st.write("Villes sélectionnées :", st.session_state.villes)
+st.write("Types de vélos sélectionnés :", st.session_state.types_velos)
 
 # Créer le graphique pour les vélos disponibles par commune
 if st.session_state.villes and st.session_state.types_velos:
@@ -351,7 +355,6 @@ if st.session_state.villes and st.session_state.types_velos:
     st.pyplot(fig7)
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
-
 
 # In[ ]:
 
