@@ -257,7 +257,6 @@ st.pyplot(fig5)
 plt.show()
 
 
-# Supprimer les informations après la date
 df['duedate'] = df['duedate'].str.extract(r'(\d{4}-\d{2}-\d{2})')[0]
 df['duedate'] = pd.to_datetime(df['duedate'], format='%Y-%m-%d')
 
@@ -267,54 +266,36 @@ df_not_installed = df[df['is_installed'] == "NON"].copy()
 # Extraire les mois et années des dates des dernières actualisations
 df_not_installed['year_month'] = df_not_installed['duedate'].dt.to_period('M')
 
-st.markdown('<div class="stTitle">Evolution nominale du nombre de fermeture de stations</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Sélectionnez les paramètres pour le graphique 4</div>', unsafe_allow_html=True)
 
-# Initialiser l'état de session si nécessaire
-if 'selected_communes' not in st.session_state:
-    st.session_state.selected_communes = []
+# Filtre pour sélectionner la commune ou toutes les communes
+communes = ['Toutes les communes'] + df_not_installed['nom_arrondissement_communes'].unique().tolist()
+selected_commune = st.selectbox('Sélectionnez la commune', options=communes)
 
-# Filtre pour sélectionner les communes
-communes = df_not_installed['nom_arrondissement_communes'].unique().tolist()
-selected_communes = st.multiselect('Sélectionnez les communes', options=communes, default=st.session_state.selected_communes)
+# Filtrer les données si une commune est sélectionnée
+if selected_commune != 'Toutes les communes':
+    df_not_installed = df_not_installed[df_not_installed['nom_arrondissement_communes'] == selected_commune]
 
-# Bouton "Envoyer"
-if st.button('Envoyer'):
-    st.session_state.selected_communes = selected_communes
+# Compter le nombre de stations non en service par mois et par année
+updates_per_month = df_not_installed['year_month'].value_counts().sort_index()
+
+# Convertir les périodes en timestamps pour le formatage littéraire
+updates_per_month.index = updates_per_month.index.to_timestamp()
 
 # Création du graphique temporel
-if st.session_state.selected_communes:
-    fig6, ax = plt.subplots(figsize=(15, 6))
+fig6, ax = plt.subplots(figsize=(15, 6))
+ax.plot(updates_per_month.index, updates_per_month.values, marker='o', linestyle='-')
+ax.set_xlabel('Date')
+ax.set_ylabel('Nombre de stations plus en fonctionnement')
+ax.set_title(f'Nombre de stations plus en fonctionnement par mois pour {selected_commune}')
 
-    for commune in st.session_state.selected_communes:
-        # Filtrer les données pour chaque commune sélectionnée
-        df_commune = df_not_installed[df_not_installed['nom_arrondissement_communes'] == commune]
+# Formater les étiquettes de l'axe des x en mois et années littéraires
+ax.set_xticks(updates_per_month.index)
+ax.set_xticklabels(updates_per_month.index.strftime('%B %Y'), rotation=45, ha='right')
+plt.show()
 
-        # Compter le nombre de stations non en service par mois et par année
-        updates_per_month = df_commune['year_month'].value_counts().sort_index()
-
-        # Convertir les périodes en timestamps pour le formatage littéraire
-        updates_per_month.index = updates_per_month.index.to_timestamp()
-
-        # Tracer la courbe pour chaque commune
-        ax.plot(updates_per_month.index, updates_per_month.values, marker='o', linestyle='-', label=commune)
-
-    # Réglages des axes et des titres
-    ax.set_xlabel('Date')
-    ax.set_ylabel('Nombre de stations plus en fonctionnement')
-    ax.set_title('Nombre de stations plus en fonctionnement par mois')
-    ax.legend(title='Communes')
-
-    # Formater les étiquettes de l'axe des x en mois et années littéraires
-    ax.set_xticks(updates_per_month.index)
-    ax.set_xticklabels(updates_per_month.index.strftime('%B %Y'), rotation=45, ha='right')
-
-    plt.tight_layout()
-
-    # Affichage du graphique
-    st.pyplot(fig6)
-else:
-    st.write("Veuillez sélectionner au moins une commune pour afficher le graphique.")
-
+# Affichage du graphique
+st.pyplot(fig6)
 
 # Initialiser session_state pour les villes et types de vélos si elles n'existent pas
 if 'villes' not in st.session_state:
