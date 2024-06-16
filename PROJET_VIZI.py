@@ -169,9 +169,12 @@ st.write("""**numbikeavalaiable** correspond au nombre de vélos disponibles""")
 st.write("""**mechanical et ebike**, respectivement le nombre de vélos mécaniques et électriques""")
 st.write("""**is_renting** indique si il ya une borne de paiement et **is_returning** indique si il est possible de retourner son vélib à cette station""")
 st.write("""**duedate** correspond à la date de la dernière actualisation des informations de la station""")
-
+st.write("""**fréquentation** correspond à la popularité de la station et **% de vélos électriques** est éponyme""")
 st.dataframe(df)
+st.markdown("## Statistiques descriptives")
 st.dataframe(df.describe().transpose())
+
+st.markdown("## Visualisation")
 
 # ## MES GRAPHS
 
