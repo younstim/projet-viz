@@ -283,25 +283,6 @@ ax.legend()
 # Afficher le graphique dans Streamlit
 st.pyplot(fig9)
 
-# Sélection des colonnes pour la visualisation
-stations = df['nom_arrondissement_communes']  # Assumant que 'Nom communes équipées' contient les noms des stations
-vélos_disponibles = df['numbikesavailable']
-
-fig5, ax1 = plt.subplots(figsize=(15, 10))
-ax1.barh(stations, vélos_disponibles, color='skyblue')
-ax1.set_xlabel('Nombre total de vélos disponibles')
-ax1.set_ylabel('Nom des communes ')
-ax1.set_title('Nombre de vélos disponibles par station')
-
-# Assurez un layout compact
-plt.tight_layout()
-
-# Affichage du graphique
-st.pyplot(fig5)
-
-# Affichage du graphique
-plt.show()
-
 st.markdown('<div class="stTitle">Relation entre le nombre de stations fonctionnelles par commune et la moyenne de vélos par station</div>', unsafe_allow_html=True)
 
 # Calculer le nombre de stations par commune
