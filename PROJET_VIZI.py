@@ -171,7 +171,7 @@ st.write("""**is_renting** indique si il ya une borne de paiement et **is_return
 st.write("""**duedate** correspond à la date de la dernière actualisation des informations de la station""")
 
 st.dataframe(df)
-
+st.dataframe(df.describe().transpose())
 
 # ## MES GRAPHS
 
