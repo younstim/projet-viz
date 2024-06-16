@@ -14,7 +14,7 @@ from io import StringIO
 import requests
 import streamlit as st
 
-st.set_page_config(page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed", page_color="#A0C4FF")
+st.set_page_config(page_title="Projet Data Management", page_icon="🖼️", initial_sidebar_state="collapsed")
 st.markdown(
     """
     <style>
