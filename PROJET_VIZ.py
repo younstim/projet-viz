@@ -299,28 +299,40 @@ page_bg_img = '''
 # Appliquer le CSS
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
+# Initialiser session_state pour les villes et types de vélos
+if 'villes' not in st.session_state:
+    st.session_state.villes = []
+if 'types_velos' not in st.session_state:
+    st.session_state.types_velos = []
+
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
     st.write("Sélectionnez les villes")
     villes = st.multiselect(
         "Sélectionnez les villes",
-        df['nom_arrondissement_communes'].unique()
+        df_filtered['nom_arrondissement_communes'].unique(),
+        default=st.session_state.villes
     )
 
     types_velos = st.multiselect(
         "Sélectionnez le type de vélos",
-        ['mechanical', 'ebike']
+        ['mechanical', 'ebike'],
+        default=st.session_state.types_velos
     )
 
     submit_button = st.form_submit_button(label='Envoyer')
 
 if submit_button:
+    # Mettre à jour les sélections dans session_state
+    st.session_state.villes = villes
+    st.session_state.types_velos = types_velos
+
     # Créer le graphique pour les vélos disponibles par commune
     fig7, ax = plt.subplots(figsize=(15, 10))
 
     # Afficher les barres divisées pour chaque ville
     for ville in villes:
-        data_ville = df[df['nom_arrondissement_communes'] == ville]
+        data_ville = df_filtered[df_filtered['nom_arrondissement_communes'] == ville]
         if 'mechanical' in types_velos:
             ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
         if 'ebike' in types_velos:
