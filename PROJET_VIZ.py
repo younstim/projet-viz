@@ -311,7 +311,7 @@ with st.form(key='form1'):
     villes = st.multiselect(
         "Sélectionnez les villes",
         df['nom_arrondissement_communes'].unique(),
-        default=st.session_state.villes
+        
     )
 
     types_velos = st.multiselect(
