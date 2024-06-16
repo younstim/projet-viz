@@ -328,26 +328,29 @@ if submit_button:
     st.session_state.types_velos = types_velos
 
     # Créer le graphique pour les vélos disponibles par commune
-    fig7, ax = plt.subplots(figsize=(15, 10))
+    if villes and types_velos:
+        fig7, ax = plt.subplots(figsize=(15, 10))
 
-    # Afficher les barres divisées pour chaque ville
-    for ville in villes:
-        data_ville = df[df['nom_arrondissement_communes'] == ville]
-        if 'mechanical' in types_velos:
-            ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
-        if 'ebike' in types_velos:
-            ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == villes[0] else "")
+        # Afficher les barres divisées pour chaque ville
+        for ville in villes:
+            data_ville = df[df['nom_arrondissement_communes'] == ville]
+            if 'mechanical' in types_velos:
+                ax.barh(ville, data_ville['mechanical'].sum(), color='skyblue', label='Vélos mécaniques' if ville == villes[0] else "")
+            if 'ebike' in types_velos:
+                ax.barh(ville, data_ville['ebike'].sum(), left=data_ville['mechanical'].sum() if 'mechanical' in types_velos else 0, color='lightgreen', label='Vélos électriques' if ville == villes[0] else "")
 
-    # Réglages des axes et des titres
-    ax.set_xlabel('Nombre total de vélos disponibles')
-    ax.set_ylabel('Nom des communes équipées')
-    ax.set_title('Nombre de vélos disponibles par commune')
-    ax.legend()
+        # Réglages des axes et des titres
+        ax.set_xlabel('Nombre total de vélos disponibles')
+        ax.set_ylabel('Nom des communes équipées')
+        ax.set_title('Nombre de vélos disponibles par commune')
+        ax.legend()
 
-    plt.tight_layout()
+        plt.tight_layout()
 
-    # Afficher le graphique dans Streamlit
-    st.pyplot(fig7)
+        # Afficher le graphique dans Streamlit
+        st.pyplot(fig7)
+    else:
+        st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
 
 
 # In[ ]:
