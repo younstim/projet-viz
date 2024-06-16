@@ -259,7 +259,7 @@ plt.show()
 st.markdown('<div class="stTitle">Relation entre le nombre de stations fonctionnelles par commune et la moyenne de vélos par station</div>', unsafe_allow_html=True)
 
 # Ajouter une selectbox pour filtrer les communes
-filter_option = st.selectbox("Choisissez les communes à afficher :", ["Toutes les communes", "Toutes les communes sans Paris"])
+filter_option == st.selectbox("Choisissez les communes à afficher :", ["Toutes les communes", "Toutes les communes sans Paris"])
 
 # Filtrer les données en fonction du choix
 if filter_option == "Toutes les communes sans Paris":
