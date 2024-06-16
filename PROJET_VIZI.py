@@ -306,7 +306,7 @@ st.pyplot(fig6)
 if 'villes' not in st.session_state:
     st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
-    st.session_state.types_velos = ['mechanical', 'ebike']
+    st.session_state.types_velos = ['Mécanique', 'Electrique']
 
 
 # Ajouter un titre au-dessus du formulaire
