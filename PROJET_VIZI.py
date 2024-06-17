@@ -110,10 +110,8 @@ df.describe().transpose()
 missing_values = df.isnull().sum()
 missing_percentage = (df.isnull().sum() / len(df)) * 100
 
-print("Valeurs manquantes par colonne : ")  
-print(missing_values)
-print("Valeurs manquantes en pourcentages :")
-print(missing_percentage)
+print("Valeurs manquantes par colonne : "), print(missing_values)
+print("Valeurs manquantes en pourcentages :"), print(missing_percentage)
 
 
 # ## Gestion des valeurs manquantes
