@@ -72,7 +72,7 @@ data = response.content.decode('utf-8')
 
 # Charger les données dans un DataFrame pandas
 df = pd.read_csv(StringIO(data), delimiter=';')
-
+df = pd.DataFrame(data)
 # Afficher les premières lignes du DataFrame
 df.head()
 
