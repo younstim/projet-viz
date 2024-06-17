@@ -72,7 +72,7 @@ data = response.content.decode('utf-8')
 
 # Charger les données dans un DataFrame pandas
 df = pd.read_csv(StringIO(data), delimiter=';')
-df = pd.DataFrame(data)
+
 # Afficher les premières lignes du DataFrame
 df.head()
 
@@ -106,12 +106,6 @@ df.describe().transpose()
 # In[12]:
 
 
-# Vérifier les valeurs manquantes
-missing_values = df.isnull().sum()
-missing_percentage = (df.isnull().sum() / len(df)) * 100
-
-print("Valeurs manquantes par colonne : "), print(missing_values)
-print("Valeurs manquantes en pourcentages :"), print(missing_percentage)
 
 
 # ## Gestion des valeurs manquantes
