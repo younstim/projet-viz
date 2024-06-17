@@ -92,7 +92,7 @@ df.shape
 
 
 # Afficher les informations générales sur le dataset
-df.info()
+print(df.info())
 
 
 # In[155]:
