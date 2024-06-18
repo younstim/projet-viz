@@ -212,7 +212,7 @@ comparison_data = pd.DataFrame({
 })
 
 # Ajouter un titre au-dessus du graphique
-st.markdown('<div class="stTitle">Analyse du nombre de vélibs en circulation</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Analyse du nombre de vélibs en circulation en temps réel</div>', unsafe_allow_html=True)
 
 # Filtrer les données pour les communes sélectionnées (ou toutes les communes)
 communes = comparison_data.index.tolist()
