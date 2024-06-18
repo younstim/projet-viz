@@ -422,3 +422,4 @@ else:
 
 
 st.markdown("#### Conlusion finale")
+st.write(""" Enfin, nous pouvons finalement conclure que le réseau de vélib est un moyen de transport largement sous-exploités en Île de France alors qu'il pourrait permettre de soulager les transports parisiens. La trop grande disparité du nombre de station entre Paris et le reste de l'IDF est contracdictoire avec l'utilisation de ses usagers.""")
