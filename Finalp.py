@@ -179,7 +179,7 @@ st.write("""**mechanical et ebike**, respectivement le nombre de vélos mécaniq
 st.write("""**is_renting** indique si il ya une borne de paiement et **is_returning** indique si il est possible de retourner son vélib à cette station""")
 st.write("""**duedate** correspond à la date de la dernière actualisation des informations de la station""")
 st.write("""**fréquentation** correspond à la popularité de la station et **% de vélos électriques** est éponyme""")
-st.write("""**velohd** correspond au nombre de vélos hors d'usage, valeur nominale)
+st.write("""**velohd** correspond au nombre de vélos hors dusage, valeur nominale)
 st.dataframe(df)
 st.markdown("## Statistiques descriptives")
 st.dataframe(df.describe().transpose())
