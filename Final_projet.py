@@ -98,8 +98,8 @@ df.describe().transpose()
 missing_values = df.isnull().sum()
 missing_percentage = (df.isnull().sum() / len(df)) * 100
 
-print("Valeurs manquantes par colonne : "),  print(missing_values)
-print("Valeurs manquantes en pourcentages :"), print(missing_percentage)
+print(missing_values)
+print(missing_percentage)
 
 
 # #### Gestion des valeurs manquantes
@@ -261,6 +261,7 @@ ax2.set_title('Répartition des vélos en circulation et disponibles')
 # Afficher le pie chart dans Streamlit
 st.pyplot(fig10)
 
+st.markdown('<div class="stwrite">Conclusion : à l'oral</div>', unsafe_allow_html=True)
 
 # ##### Graph 3
 
