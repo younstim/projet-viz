@@ -86,7 +86,8 @@ df.head()
 
 df.shape
 print(df.info())
-dfhd = df.drop(columns=[velohd])
+cols_to_exclude = ['velohd']
+dfhd = df.drop(columns=cols_to_exclude)
 dfhd.describe().transpose()
 
 
