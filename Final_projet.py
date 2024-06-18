@@ -344,7 +344,7 @@ st.pyplot(fig6)
 if 'villes' not in st.session_state:
     st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
-    st.session_state.types_velos = ['velo_hors_d_usage', 'numbikesavailable']
+    st.session_state.types_velos = ['vélo hors d\'usage', 'numbikesavailable']
 
 # Ajouter un titre au-dessus du formulaire
 st.markdown('<div class="stTitle">Répartition en % du nombre de vélos hors d\'usage et disponibles par ville</div>', unsafe_allow_html=True)
@@ -360,7 +360,7 @@ with st.form(key='form1'):
 
     types_velos = st.multiselect(
         "Sélectionnez le type de vélos",
-        options=['velo_hors_d_usage', 'numbikesavailable'],
+        options=['vélo hors d\'usage', 'numbikesavailable'],
         default=st.session_state.types_velos
     )
 
@@ -381,7 +381,7 @@ if st.session_state.villes and st.session_state.types_velos:
         total_capacity = data_ville['capacity'].sum()
         bottom = 0
         if 'velo_hors_d_usage' in st.session_state.types_velos:
-            hors_usage_percentage = (data_ville['velo_hors_d_usage'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
+            hors_usage_percentage = (data_ville['vélo hors d\'usage'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
             ax.barh(ville, hors_usage_percentage, color='skyblue', label='Vélos hors d\'usage' if ville == st.session_state.villes[0] else "")
             bottom += hors_usage_percentage
         if 'numbikesavailable' in st.session_state.types_velos:
