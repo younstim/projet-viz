@@ -420,3 +420,5 @@ if st.session_state.villes and st.session_state.types_velos:
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
 
+
+st.markdown("#### Conlusion finale")
