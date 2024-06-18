@@ -86,7 +86,8 @@ df.head()
 
 df.shape
 print(df.info())
-df.describe().transpose()
+dfhd = df.drop(columns=[velohd])
+dfhd.describe().transpose()
 
 
 # #### Détection des valeurs manquantes
