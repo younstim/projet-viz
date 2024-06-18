@@ -86,9 +86,10 @@ df.head()
 
 df.shape
 print(df.info())
-cols_to_exclude = ['velohd']
-dfhd = df.drop(columns=cols_to_exclude)
-dfhd.describe().transpose()
+df_filtered = df.drop(columns=['velohd'])
+# Appliquer describe() sur le DataFrame filtré
+df_description = df_filtered.describe().transpose()
+print(df_description)
 
 
 # #### Détection des valeurs manquantes
