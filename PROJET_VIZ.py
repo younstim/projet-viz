@@ -143,7 +143,7 @@ def classify_popularity(percentage):
     else:
         return 'Impopulaire'
 
-df['Fréquentation'] = df['percentage_available'].apply(classify_popularity)
+df['Fréquentation'] = df[''% de vélos disponibles'].apply(classify_popularity)
 
 df['% de vélos disponibles'] = df['percentage_available'].fillna(0)
 
