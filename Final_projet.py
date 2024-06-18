@@ -344,10 +344,10 @@ st.pyplot(fig6)
 if 'villes' not in st.session_state:
     st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
-    st.session_state.types_velos = ['mechanical', 'ebike']
+    st.session_state.types_velos = ['capacité', 'vélo hors d\'usage']
 
 # Ajouter un titre au-dessus du formulaire
-st.markdown('<div class="stTitle">Répartition en % du nombre de vélos mécaniques et électriques par ville</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Répartition en % du nombre de vélos en capacité et hors d\'usage par ville</div>', unsafe_allow_html=True)
 
 # Formulaire pour sélectionner les villes et les types de vélos
 with st.form(key='form1'):
@@ -360,7 +360,7 @@ with st.form(key='form1'):
 
     types_velos = st.multiselect(
         "Sélectionnez le type de vélos",
-        options=['mechanical', 'ebike'],
+        options=['capacité', 'vélo hors d\'usage'],
         default=st.session_state.types_velos
     )
 
@@ -380,13 +380,13 @@ if st.session_state.villes and st.session_state.types_velos:
         data_ville = df[df['nom_arrondissement_communes'] == ville]
         total_capacity = data_ville['capacity'].sum()
         bottom = 0
-        if 'mechanical' in st.session_state.types_velos:
-            mechanical_percentage = (data_ville['mechanical'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
-            ax.barh(ville, mechanical_percentage, color='skyblue', label='Vélos mécaniques' if ville == st.session_state.villes[0] else "")
-            bottom += mechanical_percentage
-        if 'ebike' in st.session_state.types_velos:
-            ebike_percentage = (data_ville['ebike'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
-            ax.barh(ville, ebike_percentage, left=bottom, color='lightgreen', label='Vélos électriques' if ville == st.session_state.villes[0] else "")
+        if 'capacité' in st.session_state.types_velos:
+            capacity_percentage = (data_ville['capacity'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
+            ax.barh(ville, capacity_percentage, color='skyblue', label='Capacité' if ville == st.session_state.villes[0] else "")
+            bottom += capacity_percentage
+        if 'vélo hors d\'usage' in st.session_state.types_velos:
+            unusable_percentage = (data_ville['vélo hors d\'usage'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
+            ax.barh(ville, unusable_percentage, left=bottom, color='red', label='Vélos hors d\'usage' if ville == st.session_state.villes[0] else "")
 
     # Réglages des axes et des titres
     ax.set_xlabel('Pourcentage du nombre total de vélos disponibles')
@@ -402,7 +402,6 @@ if st.session_state.villes and st.session_state.types_velos:
     st.markdown('</div>', unsafe_allow_html=True)
 else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
-
 
 # ## Corpus et exploration
 
