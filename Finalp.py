@@ -87,7 +87,7 @@ df.head()
 df.shape
 print(df.info())
 dfh = df
-dfh.drop(columns="velohd")
+dfh.drop("velohd", axis=1)
 dfh.describe().transpose()
 
 
