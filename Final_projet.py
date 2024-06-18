@@ -261,7 +261,7 @@ ax2.set_title('Répartition des vélos en circulation et disponibles')
 # Afficher le pie chart dans Streamlit
 st.pyplot(fig10)
 
-st.markdown('<div class="stwrite">Conclusion : à l'oral</div>', unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Conclusion : à l'oral</div>', unsafe_allow_html=True)
 
 # ##### Graph 3
 
@@ -292,7 +292,7 @@ ax.set_xlabel('Moyenne de vélos par station')
 ax.set_ylabel('Nombre de stations par commune')
 
 st.pyplot(fig8)
-
+st.markdown('<div class="stTitle">Conclusion : à l'oral</div>', unsafe_allow_html=True)
 
 # ##### Graph 4
 
@@ -337,7 +337,7 @@ ax.set_xticklabels(updates_per_month.index.strftime('%B %Y'), rotation=45, ha='r
 
 # Affichage du graphique
 st.pyplot(fig6)
-
+st.markdown('<div class="stTitle">Conclusion : à l'oral</div>', unsafe_allow_html=True)
 
 # ##### Graph 5
 
