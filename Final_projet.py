@@ -149,7 +149,10 @@ df['% électrique'] = df['ebike'].fillna(0)
 # Afficher les premières lignes du DataFrame pour vérifier
 df.head()
 
-
+df['vélo hors d\'usage'] = df['capacity'] - (df['numdocksavailable'] + df['numbikesavailable'])
+df['vélo hors d\'usage'] = df['vélo hors d\'usage'].fillna(0)
+# Afficher les premières lignes du DataFrame pour vérifier
+df.head()
 # ## Affichage sur Streamlit
 
 # #### Description et explications
