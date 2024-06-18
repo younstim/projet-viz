@@ -264,7 +264,7 @@ ax2.set_title('Répartition des vélos en circulation et disponibles')
 # Afficher le pie chart dans Streamlit
 st.pyplot(fig10)
 
-st.markdown("#### Conlusion : à l'oral")
+st.markdown("#### Conclusion : à l'oral")
 # ##### Graph 3
 
 # In[ ]:
@@ -295,7 +295,7 @@ ax.set_ylabel('Nombre de stations par commune')
 
 st.pyplot(fig8)
 
-st.markdown("#### Conlusion : à l'oral")
+st.markdown("#### Conclusion : à l'oral")
 
 # ##### Graph 4
 
@@ -341,7 +341,7 @@ ax.set_xticklabels(updates_per_month.index.strftime('%B %Y'), rotation=45, ha='r
 # Affichage du graphique
 st.pyplot(fig6)
 
-st.markdown("#### Conlusion : à l'oral")
+st.markdown("#### Conclusion : à l'oral")
 
 # ##### Graph 5
 
@@ -421,5 +421,5 @@ else:
     st.write("Veuillez sélectionner au moins une ville et un type de vélo.")
 
 
-st.markdown("#### Conlusion finale")
+st.markdown("#### Conclusion finale")
 st.write(""" Enfin, nous pouvons finalement conclure que le réseau de vélib est un moyen de transport largement sous-exploité en Île de France alors qu'il pourrait permettre de soulager les transports parisiens. La trop grande disparité du nombre de station entre Paris et le reste de l'IDF est contradictoire avec la ligne de développement du Grand Paris qui se veut plus écologique et durable.""")
