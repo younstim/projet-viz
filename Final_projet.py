@@ -265,7 +265,7 @@ st.markdown(# Conclusion : à l'oral)
 
 # ##### Graph 3
 
-st.markdown("<div class='stTitle'>Relation entre le nombre de stations fonctionnelles par commune et la moyenne de vélos par station</div>", unsafe_allow_html=True)
+st.markdown('<div class="stTitle">Analyse du nombre de vélibs en circulation</div>', unsafe_allow_html=True)
 
 # Calculer le nombre de stations par commune
 station_count = df['nom_arrondissement_communes'].value_counts().reset_index()
