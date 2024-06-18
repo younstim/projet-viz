@@ -86,8 +86,8 @@ df.head()
 
 df.shape
 print(df.info())
-
-df.describe().transpose()
+dfh = df
+dfh.describe().transpose()
 
 
 
