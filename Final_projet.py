@@ -376,17 +376,26 @@ if st.session_state.villes and st.session_state.types_velos:
     fig7, ax = plt.subplots(figsize=(15, 10))
 
     # Calculer les pourcentages pour chaque ville
-    for ville in st.session_state.villes:
+    for i, ville in enumerate(st.session_state.villes):
         data_ville = df[df['nom_arrondissement_communes'] == ville]
         total_capacity = data_ville['capacity'].sum()
+        if pd.isna(total_capacity) or total_capacity == 0:
+            total_capacity = 1  # Pour éviter la division par zéro
+        
         bottom = 0
         if 'velohd' in st.session_state.types_velos:
-            hors_usage_percentage = (data_ville['velohd'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
-            ax.barh(ville, hors_usage_percentage, color='skyblue', label='Vélos hors d\'usage' if ville == st.session_state.villes[0] else "")
+            hors_usage_sum = data_ville['velohd'].sum()
+            if pd.isna(hors_usage_sum):
+                hors_usage_sum = 0
+            hors_usage_percentage = (hors_usage_sum / total_capacity) * 100
+            ax.barh(ville, hors_usage_percentage, color='skyblue', label='Vélos hors d\'usage' if i == 0 else "")
             bottom += hors_usage_percentage
         if 'numbikesavailable' in st.session_state.types_velos:
-            available_percentage = (data_ville['numbikesavailable'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
-            ax.barh(ville, available_percentage, left=bottom, color='lightgreen', label='Vélos disponibles' if ville == st.session_state.villes[0] else "")
+            available_sum = data_ville['numbikesavailable'].sum()
+            if pd.isna(available_sum):
+                available_sum = 0
+            available_percentage = (available_sum / total_capacity) * 100
+            ax.barh(ville, available_percentage, left=bottom, color='lightgreen', label='Vélos disponibles' if i == 0 else "")
 
     # Réglages des axes et des titres
     ax.set_xlabel('Pourcentage du nombre total de vélos disponibles')
