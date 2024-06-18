@@ -142,10 +142,6 @@ df['% de vélos disponibles'] = df['% de vélos disponibles'].fillna(0)
 # In[8]:
 
 
-# Calculer le pourcentage de vélos électriques
-df['% électrique'] = (df['ebike'] / df['numbikesavailable']) * 100
-df['% électrique'] = df['ebike'].fillna(0)
-
 
 
 # ## Variable: proportion de vélos hors d'usage
