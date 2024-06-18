@@ -260,7 +260,7 @@ explode = (0.1, 0)  # Explode the first slice
 ax2.pie(sizes, explode=explode, labels=labels, colors=colors, autopct='%1.1f%%', startangle=90)
 ax2.axis('equal')  # Equal aspect ratio ensures that pie is drawn as a circle.
 
-ax2.set_title('Répartition des vélos en circulation et disponibles')
+ax2.set_title('Répartition des vélos en circulation et disponibles en temps réel')
 
 # Afficher le pie chart dans Streamlit
 st.pyplot(fig10)
