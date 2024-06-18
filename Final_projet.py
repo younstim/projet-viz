@@ -149,8 +149,8 @@ df['% électrique'] = df['ebike'].fillna(0)
 # Afficher les premières lignes du DataFrame pour vérifier
 df.head()
 
-df['vélohd'] = df['capacity'] - (df['numdocksavailable'] + df['numbikesavailable'])
-df['vélohd'] = df['vélo hors d\'usage'].fillna(0)
+df['velohd'] = df['capacity'] - (df['numdocksavailable'] + df['numbikesavailable'])
+df['velohd'] = df['velohd'].fillna(0)
 # Afficher les premières lignes du DataFrame pour vérifier
 df.head()
 # ## Affichage sur Streamlit
@@ -344,7 +344,7 @@ st.pyplot(fig6)
 if 'villes' not in st.session_state:
     st.session_state.villes = list(df['nom_arrondissement_communes'].unique())
 if 'types_velos' not in st.session_state:
-    st.session_state.types_velos = ['vélohd', 'numbikesavailable']
+    st.session_state.types_velos = ['velohd', 'numbikesavailable']
 
 # Ajouter un titre au-dessus du formulaire
 st.markdown('<div class="stTitle">Répartition en % du nombre de vélos hors d\'usage et disponibles par ville</div>', unsafe_allow_html=True)
@@ -360,7 +360,7 @@ with st.form(key='form1'):
 
     types_velos = st.multiselect(
         "Sélectionnez le type de vélos",
-        options=['vélohd', 'numbikesavailable'],
+        options=['velohd', 'numbikesavailable'],
         default=st.session_state.types_velos
     )
 
@@ -380,8 +380,8 @@ if st.session_state.villes and st.session_state.types_velos:
         data_ville = df[df['nom_arrondissement_communes'] == ville]
         total_capacity = data_ville['capacity'].sum()
         bottom = 0
-        if 'vélohd' in st.session_state.types_velos:
-            hors_usage_percentage = (data_ville['vélohd'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
+        if 'velohd' in st.session_state.types_velos:
+            hors_usage_percentage = (data_ville['velohd'].sum() / total_capacity) * 100 if total_capacity > 0 else 0
             ax.barh(ville, hors_usage_percentage, color='skyblue', label='Vélos hors d\'usage' if ville == st.session_state.villes[0] else "")
             bottom += hors_usage_percentage
         if 'numbikesavailable' in st.session_state.types_velos:
