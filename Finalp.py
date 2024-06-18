@@ -86,10 +86,9 @@ df.head()
 
 df.shape
 print(df.info())
-df_filtered = df.drop(columns=['velohd'])
-# Appliquer describe() sur le DataFrame filtré
-df_description = df_filtered.describe().transpose()
-print(df_description)
+
+df.describe().transpose()
+
 
 
 # #### Détection des valeurs manquantes
